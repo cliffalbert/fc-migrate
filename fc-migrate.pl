@@ -35,6 +35,19 @@ sub convertWWN {
    return "00:00:00:00:00:00:00";
 } 
 
+sub returnWWNorAlias {
+   my ($WWNMember) = @_;
+   my $applicable_alias = 0;
+   if ($wwnAlias{$zoneMemberDB[$row][$column]}) {
+	$applicable_alias = $wwnAlias{$zoneMemberDB[$row][$column]};
+        $applicable_alias =~ s/-/_/g;
+   } else {
+	$applicable_alias = convertWWN($WWNMember);
+   }
+   return $applicable_alias;
+}
+   
+
    my $source_file = $ARGV[0];
    my $output_file = $ARGV[1];
    print " - Opening configuration file $source_file\n";
@@ -117,7 +130,7 @@ sub convertWWN {
   	  $applicable_zone =~ s/-/_/g;
 	  $command_output = "zonecreate \"$applicable_zone\",\"";
  	  foreach $column (0..@{$zoneMemberDB[$row]}-1) {
-            $command_output .= " ".convertWWN($zoneMemberDB[$row][$column]).";";
+            $command_output .= " ".returnWWNorAlias($zoneMemberDB[$row][$column]).";";
  	    if ($debug) { print "Zone $zoneDB[$row] has member $wwnAlias{$zoneMemberDB[$row][$column]} ($zoneMemberDB[$row][$column])\n"; };
           };
 	  $command_output =~ s/\;+$//;
