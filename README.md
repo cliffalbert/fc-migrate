@@ -9,7 +9,9 @@ Currently has only support for 1 Zoneset and supports the orphaned zoneset.
 
 ### Usage
 
+```
 ./fc-migrate.pl <SOURCECONFIG> <DESTINATIONCONFIG>
+```
 
 SOURCECONFIG is a backupped configdata from the qlogic
 
