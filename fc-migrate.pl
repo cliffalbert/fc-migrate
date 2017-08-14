@@ -125,7 +125,8 @@ sub returnWWNorAlias {
    my $fabric_created = 0;
 
    foreach $row (0..@zoneMemberDB-1) {
-	if ($zoneSetDB{$zoneDB[$row]}) {
+	if ($debug) { print "D: $zoneDB[$row] \n"; }
+	if (defined $zoneSetDB{$zoneDB[$row]}) {
           $applicable_zone = $zoneDB[$row];
   	  $applicable_zone =~ s/-/_/g;
 	  $command_output = "zonecreate \"$applicable_zone\",\"";
