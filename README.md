@@ -14,6 +14,7 @@ Currently has only support for 1 Zoneset and supports the orphaned zoneset.
 ```
 
 SOURCECONFIG is a backupped configdata from the qlogic
+
 CFG_NAME is the name of the configuration on brocade where the zones should reside in. It is optional.
 
 ### Differences between Brocade and Qlogic
