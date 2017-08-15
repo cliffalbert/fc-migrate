@@ -7,7 +7,7 @@ print "Release $version\n";
 print "(c) 2017 Unilogic B.V.\n\n";
 
 if (!$ARGV[0] || !$ARGV[1]) {
-	die "fc-migrate.pl <INPUT FILE> <OUTPUT FILE>\n";
+	die "fc-migrate.pl <INPUT FILE> <OUTPUT FILE> (<CFG_NAME>)\n";
 };
 
 # Source Tested on Sanbox 5602 Software Version: V7.4.0.16.0
@@ -15,7 +15,7 @@ if (!$ARGV[0] || !$ARGV[1]) {
 
 # Configuration Variables
 
-my $fabric_name = "UNIFAP";
+my $fabric_name = "MYBROCADECFG";
 
 # Initialize Variables
 
@@ -50,6 +50,7 @@ sub returnWWNorAlias {
 
    my $source_file = $ARGV[0];
    my $output_file = $ARGV[1];
+   if (defined $ARGV[2]) { $fabric_name = $ARGV[2]; };
    print " - Opening configuration file $source_file\n";
    open CONFIG_FILE, "<$source_file" or die "Could not open file '$source_file' $!";
    print " - Opening output file $output_file\n";
